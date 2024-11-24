@@ -49,7 +49,6 @@ import updateMetaTags from '@/utils/update-meta-tags'
 
 const route = useRoute()
 
-// Set META for SEO
 watch(
   () => route.meta,
   (meta) => {
