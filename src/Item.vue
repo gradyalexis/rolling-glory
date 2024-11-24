@@ -1,6 +1,6 @@
 <template>
   <Breadcrumb class="mt-4 p-4" :product-name="product?.attributes?.name || ''" />
-  <div class="row mt-4">
+  <div class="row mt-4 z-2">
     <div class="col">
       <img
         :src="product?.attributes?.images[0] || ''"
@@ -9,7 +9,7 @@
         :alt="product?.attributes?.name || ''"
       />
     </div>
-    <div class="col">
+    <div class="col z-2">
       <div class="fs-3 fw-semibold mb-2">
         {{ product?.attributes?.name || '' }}
         <div class="d-flex align-items-center gap-2">
@@ -59,7 +59,7 @@
         </button>  
       </div>
     </div>
-    <DetailProduct :render="product?.attributes?.info || ''" />
+    <DetailProduct class="z-2" :render="product?.attributes?.info || ''" />
   </div>
 </template>
 

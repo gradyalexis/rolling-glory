@@ -4,7 +4,7 @@
     <router-view></router-view>
   </div>
   <img
-    class="z-1 w-100"
+    class="w-100"
     src="@/assets/batik-bg.png"
     style="margin-top: -500px"
     alt="background batik"
