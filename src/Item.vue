@@ -72,7 +72,7 @@ import QuantityCounter from '@/components/QuantityCounter.vue'
 import WishlistButton from '@/components/WishlistButton.vue'
 import DetailProduct from '@/components/DetailProduct.vue'
 
-import updateMetaTags from '@/utils/meta'
+import updateMetaTags from '@/utils/update-meta-tags'
 
 import StarRating from 'vue-star-rating'
 

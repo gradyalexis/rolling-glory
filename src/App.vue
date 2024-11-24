@@ -45,7 +45,7 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-import updateMetaTags from '@/utils/updateMetaTags'
+import updateMetaTags from '@/utils/update-meta-tags'
 
 const route = useRoute()
 
