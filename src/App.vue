@@ -45,7 +45,7 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-import META from '@/constants/meta'
+import updateMetaTags from '@/utils/updateMetaTags'
 
 const route = useRoute()
 
@@ -54,29 +54,7 @@ watch(
   () => route.meta,
   (meta) => {
     if (meta) {
-      document.title = meta.title || META.DEFAULT_TITLE
-
-      // Update description
-      const descriptionMeta = document.querySelector('meta[name="description"]')
-      if (descriptionMeta) {
-        descriptionMeta.setAttribute('content', meta.description || META.DEFAULT_DESCRIPTION)
-      } else {
-        const newMeta = document.createElement('meta')
-        newMeta.name = 'description'
-        newMeta.content = meta.description || META.DEFAULT_DESCRIPTION
-        document.head.appendChild(newMeta)
-      }
-
-      // Update Open Graph image
-      const ogImageMeta = document.querySelector('meta[property="og:image"]')
-      if (ogImageMeta) {
-        ogImageMeta.setAttribute('content', meta.image || META.DEFAULT_IMAGE)
-      } else {
-        const newOgMeta = document.createElement('meta')
-        newOgMeta.setAttribute('property', 'og:image')
-        newOgMeta.content = meta.image || META.DEFAULT_IMAGE
-        document.head.appendChild(newOgMeta)
-      }
+      updateMetaTags(meta)
     }
   },
   { immediate: true }

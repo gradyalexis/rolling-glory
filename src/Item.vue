@@ -67,12 +67,12 @@
 import { ref, onMounted, inject, watch } from 'vue'
 import { useRoute } from 'vue-router';
 
-import Breadcrumb from '@/components/Breadcrumb.vue';
-import QuantityCounter from '@/components/QuantityCounter.vue';
-import WishlistButton from '@/components/WishlistButton.vue';
-import DetailProduct from '@/components/DetailProduct.vue';
+import Breadcrumb from '@/components/Breadcrumb.vue'
+import QuantityCounter from '@/components/QuantityCounter.vue'
+import WishlistButton from '@/components/WishlistButton.vue'
+import DetailProduct from '@/components/DetailProduct.vue'
 
-import META from '@/constants/meta'
+import updateMetaTags from '@/utils/meta'
 
 import StarRating from 'vue-star-rating'
 
@@ -81,30 +81,10 @@ const route = useRoute()
 
 const product = ref(null)
 
-const fetchProduct = () => {
-  $axios
+const fetchProduct = async () => {
+  await $axios
     .get(`/gifts/${route.params.id}`)
     .then(response => (product.value = response?.data?.data || null))
-}
-
-const updateMetaTags = (productData) => {
-  document.title = productData.name || META.DEFAULT_TITLE
-
-  // Update description
-  const descriptionMeta = document.querySelector('meta[name="description"]')
-  if (descriptionMeta) {
-    descriptionMeta.setAttribute('content', productData.description || META.DEFAULT_DESCRIPTION)
-  }
-
-  // Update Open Graph meta tags
-  const ogTitle = document.querySelector('meta[property="og:title"]')
-  if (ogTitle) ogTitle.setAttribute('content', productData.name || META.DEFAULT_TITLE)
-
-  const ogDescription = document.querySelector('meta[property="og:description"]')
-  if (ogDescription) ogDescription.setAttribute('content', productData.description || META.DEFAULT_DESCRIPTION)
-
-  const ogImage = document.querySelector('meta[property="og:image"]')
-  if (ogImage) ogImage.setAttribute('content', productData.images[0] || META.DEFAULT_IMAGE)
 }
 
 const productStock = (stock) => {
@@ -121,7 +101,11 @@ const productStock = (stock) => {
 
 onMounted(async () => {
   await fetchProduct()
-  updateMetaTags(product.value.attributes)
+  updateMetaTags({
+    title: product.value.attributes.name,
+    description: product.value.attributes.description,
+    image: product.value.attributes.images[0],
+  })
 })
 </script>
 
