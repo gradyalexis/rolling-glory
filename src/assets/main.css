@@ -1,0 +1,39 @@
+.text-grey {
+  color: #888888;
+}
+
+.text-grey-light {
+  color: #d2d2d2;
+}
+
+.text-grey-dark {
+  color: #E64580;
+}
+
+.text-green {
+  color: #79B625;
+}
+
+.bg-grey {
+  background: #888888;
+}
+
+.bg-grey-light {
+  background: #d2d2d2;
+}
+
+.bg-green {
+  background: #79B625;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
